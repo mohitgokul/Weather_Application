@@ -128,9 +128,9 @@ app.post('/resultLocation', function(req, res){
 //     title: 'Hello World',
 //     page: 'Home page',
 //     contents: {
-//       name: 'Madhav',
-//       lastName: 'Bahl',
-//       age: '19',
+//       name: 'Mohit Gokul',
+//       lastName: 'Murali',
+//       age: '18',
 //       skills: 'Web Developer'
 //     }
 //   });
