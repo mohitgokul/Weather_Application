@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LX - Weather APP</title>
+    <meta name="description" content="LX - Weather APP: Just search for the
+    place where you live in the search box and we shall provide you with the
+    complete weather forecast and current weather consitions for that place" />
+    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/resultsMain.css">
+  </head>
+  <body>
+
+    <!-- ============ LOADER INTEGRATED ============== -->
+
+    <div id="overlay">
+    </div>
+
+    <!-- ============ MAIN CONTENT ========== -->
+  <a href="https://github.com/MadhavBahlMD/WeatherAPP"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <div id="mainContent">
+      <div class="row" id="headTitle">
+        <h1 id="currentWeather"><span style="font-weight: lighter;">Current</span> Weather <span style="font-weight: bolder;">Conditions</span></h1>
+        <div class="col-xs-12">
+          <img id="lineBreak" src="img/break.png" />
+        </div>
+      </div>
+
+      <!-- <div id="map" style="height:200px;"></div> -->
+
+      <div class="row" id="currentStatus">
+        <div class="col-sm-offset-1 col-sm-5 col-xs-12" id="currentData">
+          <h4> <b>Your Location</b>: {{location}}</h4>
+          <h4> <b>Current Weather</b>: <span id="currentIcon">{{currentIcon}}</span></h4>
+          <h4> <b>Actual Temperature</b>: {{currentTemperature}}&#8451;</h4>
+          <h4> <b>Apparent Temperature</b>: {{currentApperentTemperature}}&#8451;</h4>
+          <h4> <b>Humidity</b>: {{currentHumidity}}%</h4>
+          <h4> <b>Wind Velocity</b>: {{currentWindSpeed}} mph</h4>
+          <h4> <b>Atmospheric Pressure</b>: {{currentPressure}} atm</h4>
+          <h4> <b>Summary For This Week</b>: {{weekSummary}}</h4>
+          <h4 id="lat">{{lat}}</h4>
+          <h4 id="lng">{{lng}}</h4>
+          <button id="showMore" data-toggle="modal" data-target="#myModal">Show Daily Forecast</button>
+          <a href="/"><button id="showMore">Go Back</button></a>
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-4 col-xs-12">
+          <div id="beforeMap">
+            <a id="mapTrigger" onclick="showMap()"><h1>SHOW MAP</h1></a>
+          </div>
+          <div id="map"></div>
+
+        </div>
+      </div>
+
+      <!-- Modal -->
+
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+
+            <div class="modal-body" id="modalBody">
+             <div class="modal-header hidden-xs">
+                <button type="button" id="closeButtonX" class="close" data-dismiss="modal">X</button>
+                <h3 class="modal-title">DAILY WEATHER FORECAST</h3>
+              </div>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                  <li data-target="#myCarousel" data-slide-to="4"></li>
+                  <li data-target="#myCarousel" data-slide-to="5"></li>
+                  <li data-target="#myCarousel" data-slide-to="6"></li>
+                  <li data-target="#myCarousel" data-slide-to="7"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                  <div class="item active">
+                    <img id="satBKG" class="item-image" src="img/clear-day.jpg" alt="Los Angeles" style="width:100%;">
+                    <div id="sat" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>TODAY:</b> {{sat}}</h3>
+                      <h3><b>FORECAST:</b> <span id="satIcon">{{satIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{satSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{satMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{satMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{satHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{satWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{satPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="sunBKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="sun" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>TOMORROW:</b> {{sun}}</h3>
+                      <h3><b>Forecast:</b> <span id="sunIcon">{{sunIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{sunSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{sunMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{sunMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{sunHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{sunWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{sunPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="monBKG" src="img/clear-day.jpg" style="width:100%;">
+                    <div id="mon" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{mon}}</h3>
+                      <h3><b>FORECAST:</b> <span id="monIcon">{{monIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{monSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{monMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{monMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{monHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{monWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{monPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="tuesBKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="tues" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{tues}}</h3>
+                      <h3><b>FORECAST:</b> <span id="tuesIcon">{{tuesIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{tuesSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{tuesMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{tuesMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{tuesHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{tuesWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{tuesPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="wedBKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="wed" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{wed}}</h3>
+                      <h3><b>FORECAST:</b> <span id="wedIcon">{{wedIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{wedSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{wedMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{wedMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{wedHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{wedWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{wedPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="thurBKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="thur" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{thur}}</h3>
+                      <h3><b>FORECAST:</b> <span id="thurIcon">{{thurIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{thurSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{thurMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{thurMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{thurHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{thurWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{thurPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="friBKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="fri" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{fri}}</h3>
+                      <h3><b>FORECAST:</b> <span id="friIcon">{{friIcon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{friSummary}}</p>
+                      <p><b>Maximum Temperature:</b> {{friMaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{friMinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{friHumidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{friWindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{friPressure}} atm</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img id="sat2BKG" src="img/cloudy.jpg" alt="Chicago" style="width:100%;">
+                    <div id="sat2" class="carousel-caption">
+                      <h3 class="modal-title visible-xs" style="color: #9F9F9F;">DAILY WEATHER FORECAST</h3>
+                      <h3><b>DAY:</b> {{sat2}}</h3>
+                      <h3><b>FORECAST:</b> <span id="sat2Icon">{{sat2Icon}}</span></h3>
+                      <p><b>Weather Summary:</b> {{sat2Summary}}</p>
+                      <p><b>Maximum Temperature:</b> {{sat2MaxTemp}}&#8451;</p>
+                      <p><b>Minimum Temperature:</b> {{sat2MinTemp}}&#8451;</p>
+                      <p><b>Humidity:</b> {{sat2Humidity}}%</p>
+                      <p><b>Wind Velocity:</b> {{sat2WindSpeed}} mph</p>
+                      <p><b>Pressure:</b> {{sat2Pressure}} atm</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" id="closeButton" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- <h1> WEATHER APP </h1>
+      <h4> TODAY : {{sat}} </h4>
+      <h4> LOCATION : {{location}} </h4>
+      <h4> LATITUDE : {{lat}} </h4>
+      <h4> LONGITUDE : {{lng}} </h4>
+      <h4> currentIcon : {{currentIcon}} </h4>
+      <h4> currentTemperature : {{currentTemperature}} </h4>
+      <h4> currentApperentTemperature : {{currentApperentTemperature}} </h4>
+      <h4> currentIcon : {{currentIcon}} </h4>
+      <h4> currentHumidity : {{currentHumidity}} </h4>
+      <h4> currentWindSpeed : {{currentWindSpeed}} </h4>
+      <h4> currentPressure : {{currentPressure}} </h4>
+      <h4> weekSummary : {{weekSummary}} </h4>
+      <h4> satSummary : {{satSummary}} </h4>
+      <h4> satMaxTemp : {{satMaxTemp}} </h4>
+      <h4> satMinTemp : {{satMinTemp}} </h4>
+      <h4> satHumidity : {{satHumidity}} </h4>
+      <h4> satWindSpeed : {{satWindSpeed}} </h4>
+      <h4> satPressure : {{satPressure}} </h4>
+      <h4> Tomorrow : {{sun}},
+      <h4> sunSummary : {{sunSummary}} </h4>
+      <h4> sunMaxTemp : {{sunMaxTemp}} </h4>
+      <h4> sunMinTemp : {{sunMinTemp}} </h4>
+      <h4> sunHumidity : {{sunHumidity}} </h4>
+      <h4> sunWindSpeed : {{sunWindSpeed}} </h4>
+      <h4> sunPressure : {{sunPressure}} </h4>
+      <h4> monSummary : {{monSummary}} </h4>
+      <h4> monMaxTemp : {{monMaxTemp}} </h4>
+      <h4> monMinTemp : {{monMinTemp}} </h4>
+      <h4> monHumidity : {{monHumidity}} </h4>
+      <h4> monWindSpeed : {{monWindSpeed}} </h4>
+       -->
+    </div>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzuBoGMJpH1SKFLP4NAU1YP2LE2eHCOAc&callback=initMap">
+    </script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include JS for Main Result Page -->
+    <script src="js/resultPage.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Include JS for LOADER -->
+    <script src="js/loader.js"></script>
+  </body>
+</html>
