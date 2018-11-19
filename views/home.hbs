@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LX - Weather APP</title>
+    <meta name="description" content="LX - Weather APP: Just search for the
+    place where you live in the search box and we shall provide you with the
+    complete weather forecast and current weather consitions for that place" />
+    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <!-- ============ LOADER INTEGRATED ============== -->
+
+    <div id="overlay">
+    </div>
+
+    <!-- ============ MAIN CONTENT ========== -->
+<a target="_blank" href="https://github.com/MadhavBahlMD/WeatherAPP"><img style="position: absolute; z-index: 99999; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <div id="mainContent">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="hidden-xs" id="header">
+            WEATHER APP : Search for weather forecast for any place
+          </h1>
+          <h1 class="visible-xs" id="header-xs">
+            Daily Weather Forecast
+          </h1>
+        </div>
+      </div>
+      <!-- <h1> WEATHER APP </h1> -->
+      <!-- <div class="searchbox" onClick="onClick(event)"> -->
+        <!-- <form action="/resultLocation"  method="post">
+          <label for="location">Location:</label>
+          <input type="text" id="location"  name="location" placeholder="Enter Your Location..." required/>
+          <input type="submit" onclick="showLoader()" value="Send Location" />
+
+        </form> -->
+      <!-- </div> -->
+        <form method="post" action="/resultLocation" id="searchbox5">
+          <input id="search52" onsubmit="showLoader()" name="location" type="text" size="80" placeholder="Enter Your Location..." required/><br /><br />
+          <div >
+            <button id="submitBtn" type="submit" onclick="showLoader()" value="Send Location">
+              Weather Forecast
+            </button>
+          </div>
+        </form>
+
+
+        <div class="row">
+          <div class="col-xs-12">
+
+            <div class="hidden-xs">
+              <h3  id="footer">
+                Designed And Developed By:
+                <a id="fbLink" target="_blank" href="https://www.facebook.com/MadhavBahlMD"><i class="fa fa-facebook-square"></i></a>
+                <a id="fbLink" target="_blank" href="https://www.github.com/MadhavBahlMD"><i class="fa fa-github-square"></i></a>
+                <a id="fbLink" target="_blank" href="https://www.linkedin.com/in/madhavbahl/"><i class="fa fa-linkedin-square"></i></a>
+                 Madhav Bahl
+              </h3>
+            </div>
+            <div class="visible-xs">
+              <h3  id="footer-xs">
+                Developer:
+                <a id="fbLink" href="https://www.facebook.com/MadhavBahlMD"><i class="fa fa-facebook-square"></i></a>
+                <a id="fbLink" href="https://www.github.com/MadhavBahlMD"><i class="fa fa-github-square"></i></a>
+                <a id="fbLink" href="https://www.linkedin.com/in/madhavbahl/"><i class="fa fa-linkedin-square"></i></a>
+                 Madhav Bahl
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+    <!-- Script for loader -->
+    <script src="js/loader.js"></script>
+  </body>
+</html>
