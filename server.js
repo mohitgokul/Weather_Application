@@ -1,3 +1,4 @@
+//server-side coding
 const express = require('express');
 const bodyParser = require('body-parser');
 const yargs = require('yargs');
@@ -137,6 +138,7 @@ app.post('/resultLocation', function(req, res){
 // });
 
 
-app.listen(port, () => {
+app.listen(port, () =>
+{
   console.log(`App is up on server ${port}`);
 });
