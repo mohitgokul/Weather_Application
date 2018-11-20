@@ -1,3 +1,4 @@
+//Getting the coordinates from Google Maps
 const request = require('request');
 
 var geocodeAddress = (address,callback) => {
@@ -7,7 +8,8 @@ var geocodeAddress = (address,callback) => {
  {
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
     json: true
-  }, (error,response,body) => {
+  }, (error,response,body) =>
+  {
     if(error){
       callback('Unable to connect to google servers')
     } else if(body.status === 'ZERO_RESULTS') {
