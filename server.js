@@ -36,6 +36,8 @@ app.post('/resultLocation', function(req, res){
         var dayNumber = date.getDay();
         var days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 
+        //Week Time Weather forecast
+        
         var weatherForecast = {
           location: results.address,
           lat: results.latitude,
